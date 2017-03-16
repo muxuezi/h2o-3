@@ -61,7 +61,7 @@ def vec_math_ops():
     assert ((h2o_data1.tanh() - h2o.H2OFrame(np.tanh(np_data1))).abs() < 1e-12 * h2o_data1.tanh().abs()).all()
     assert ((h2o_data3.acosh() - h2o.H2OFrame(np.arccosh(np_data3))).abs() < 2e-12 * h2o_data3.acosh().abs()).all()
     assert ((h2o_data1.asinh() - h2o.H2OFrame(np.arcsinh(np_data1))).abs() < 1e-12 * h2o_data1.asinh().abs()).all()
-    assert ((h2o_data2.atanh() - h2o.H2OFrame(np.arctanh(np_data2))).abs() < 1e-12 * h2o_data2.atanh().abs()).all()
+    assert ((h2o_data2.atanh() - h2o.H2OFrame(np.arctanh(np_data2))).abs() < 2e-12 * h2o_data2.atanh().abs()).all()
 
     print("Testing gamma functions")
     x_val = h2o_data3[5, c]
