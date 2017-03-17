@@ -278,6 +278,7 @@ public class Env extends Iced {
     // Search
     init(new AstMatch());
     init(new AstWhich());
+    init(new AstWhichMax());
 
     // Repeaters
     init(new AstRepLen());
