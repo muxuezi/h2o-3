@@ -930,10 +930,26 @@ def load_java_messages_to_ignore():
         g_ok_java_messages["general"] = []
 
 
+def usage():
+    """
+    Print USAGE help.
+    """
+    print("")
+    print("Usage:  ")
+    print("python scrapeForIntermittents timestamp job_name build_id git_sha node_name unit_test_category jenkins_URL")
+
 
 def main(argv):
     """
-    Main program.
+    Main program.  Expect script name plus 7 inputs in the following order:
+    - This script name
+    1. timestamp: date +'%m_%d_%Y_%H:%M:%S:%3N' or GIT_DATE
+    2. jenkins_job_name (JOB_NAME)
+    3. build_id (BUILD_ID)
+    4. git hash (GIT_SHA)
+    5. node name (NODE_NAME)
+    6. unit test category (JUnit, PyUnit, RUnit, Hadoop)
+    7. Jenkins URL (JENKINS_URL)
 
     @return: none
     """
@@ -948,12 +964,13 @@ def main(argv):
     global g_java_message_pickle_filename
     global g_summary_text_filename
 
-    if len(argv) < 3:
-        print "Must resource url like http://mr-0xa1:8080/view/wendy_jenkins/job/h2o_regression_pyunit_medium_large/lastBuild/consoleFull, filename of summary text, filename (optional ending in .pickle) to retrieve Java error messages to exclude.\n"
+    if len(argv) < 8:
+        print "Wrong call.  Not enough arguments.\n"
+        usage()
         sys.exit(1)
     else:   # we may be in business
         g_script_name = os.path.basename(argv[0])   # get name of script being run.
-        resource_url = argv[1]
+        resource_url = argv[7]
 
         g_temp_filename = os.path.join(g_test_root_dir,'tempText')
         g_summary_text_filename = os.path.join(g_test_root_dir,argv[2])
